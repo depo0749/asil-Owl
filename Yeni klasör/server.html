@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunucu — OWLISBA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .rank-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+    .rank-card:hover { transform: translateY(-4px); }
+    .rank-tier {
+      font-family: var(--font-display);
+      font-size: 1.8rem; letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .rank-price {
+      font-family: var(--font-mono);
+      font-size: 0.8rem; color: var(--text3);
+      margin-bottom: 1rem;
+    }
+    .rank-perks { display: flex; flex-direction: column; gap: 0.5rem; }
+    .rank-perks li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--text2); list-style: none; }
+    .rank-perks li i { width: 14px; font-size: 0.8rem; }
+
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .leaderboard-table th {
+      background: var(--surface2);
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      border-bottom: 1px solid var(--border);
+    }
+    .leaderboard-table td {
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid rgba(42,42,61,0.5);
+      font-size: 0.9rem;
+      color: var(--text2);
+    }
+    .leaderboard-table tr:hover td { background: rgba(255,95,31,0.04); }
+    .leaderboard-table tr:last-child td { border-bottom: none; }
+    .rank-num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--text3);
+    }
+    .rank-num.gold { color: #ffd700; }
+    .rank-num.silver { color: #c0c0c0; }
+    .rank-num.bronze { color: #cd7f32; }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+    }
+    .faq-q {
+      padding: 1.2rem 1.5rem;
+      background: var(--surface);
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: none;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    .faq-q:hover { background: var(--surface2); color: var(--accent); }
+    .faq-a {
+      padding: 0 1.5rem;
+      max-height: 0; overflow: hidden;
+      background: var(--bg2);
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text2);
+      line-height: 1.8;
+      font-size: 0.9rem;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 1.2rem 1.5rem; }
+    .faq-item.open .faq-q i { transform: rotate(45deg); }
+    .faq-q i { transition: transform 0.3s; color: var(--accent); }
+
+    .rules-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .rule-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+    }
+    .rule-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem; color: var(--accent);
+      flex-shrink: 0; line-height: 1;
+    }
+    .rule-text strong { display: block; margin-bottom: 0.2rem; }
+    .rule-text p { font-size: 0.85rem; color: var(--text2); }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><span class="logo-owl">🦉</span><span class="logo-text"><a href="index.html">OWLISBA</a></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="videos.html">Videolar</a></li>
+    <li><a href="games.html">Oyunlar</a></li>
+    <li><a href="server.html" class="active">Sunucu</a></li>
+    <li><a href="about.html">Hakkımda</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://kick.com/owlisba" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://discord.com/invite/f5wYekYN5y" target="_blank"><i class="fa-brands fa-discord"></i></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="videos.html">Videolar</a>
+  <a href="games.html">Oyunlar</a>
+  <a href="server.html">Sunucu</a>
+  <a href="about.html">Hakkımda</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="background:linear-gradient(to bottom, #0d1a05, #0a0a0f);">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <span class="section-tag">⛏️ MINECRAFT SUNUCUSU</span>
+    <h1>Owlisba <span class="accent">Hardcore</span></h1>
+    <p>Bir ölümün sonu, her günün bir hikayesi. Girmeye cesur musun?</p>
+  </div>
+</div>
+
+<section class="section">
+  <!-- SERVER IP -->
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2.5rem; margin-bottom:3rem; text-align:center;">
+    <p style="font-family:var(--font-mono); font-size:0.75rem; letter-spacing:3px; color:var(--text3); text-transform:uppercase; margin-bottom:1rem;">SUNUCU BAĞLANTI BİLGİLERİ</p>
+    <div class="server-ip-display" style="max-width:480px; margin:0 auto 1.5rem;">
+      <code>play.owlisba.net</code>
+      <button class="copy-btn">📋 Kopyala</button>
+    </div>
+    <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+      <div style="text-align:center;"><span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text3); letter-spacing:1px; display:block; margin-bottom:0.3rem;">VERSİYON</span><span style="font-family:var(--font-display); font-size:1.4rem; color:var(--accent);">1.21.x</span></div>
+      <div style="text-align:center;"><span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text3); letter-spacing:1px; display:block; margin-bottom:0.3rem;">DURUM</span><span style="font-family:var(--font-display); font-size:1.4rem; color:#39ff14;">● ÇEVRIMIÇI</span></div>
+      <div style="text-align:center;"><span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text3); letter-spacing:1px; display:block; margin-bottom:0.3rem;">OYUNCU</span><span style="font-family:var(--font-display); font-size:1.4rem; color:var(--accent);">47/100</span></div>
+      <div style="text-align:center;"><span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text3); letter-spacing:1px; display:block; margin-bottom:0.3rem;">MOD</span><span style="font-family:var(--font-display); font-size:1.4rem; color:#fff;">HARDCORE</span></div>
+    </div>
+    <a href="https://discord.com/invite/f5wYekYN5y" target="_blank" class="btn btn-discord"><i class="fa-brands fa-discord"></i> Destek için Discord'a Katıl</a>
+  </div>
+
+  <!-- INFO GRID -->
+  <div class="server-info-grid">
+    <div class="server-box">
+      <h3>🎮 Sunucu Hakkında</h3>
+      <p style="color:var(--text2); line-height:1.8; font-size:0.9rem;">Owlisba Hardcore Sunucusu, geleneksel Minecraft survival deneyimini en yoğun haliyle sunar. Bir kez ölürsen — her şeyin biter. Eşyaların, evlerin, hikayen. Bu yüzden her adım önemli, her karar kritik.</p>
+      <p style="color:var(--text2); line-height:1.8; font-size:0.9rem; margin-top:1rem;">Owlisba kendi Hardcore sunucusunda oynar ve canlı yayında izleyebilirsin. En komik, en dramatik anlar hep burada yaşanır.</p>
+    </div>
+    <div class="server-box">
+      <h3>⚡ Sunucu Özellikleri</h3>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:0.7rem;">
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-skull" style="color:var(--accent); width:16px;"></i> Hardcore mod — bir ölüm, her şeyin sonu</li>
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-trophy" style="color:var(--accent); width:16px;"></i> Haftalık ve aylık liderlik tabloları</li>
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-calendar-days" style="color:var(--accent); width:16px;"></i> Topluluk etkinlikleri ve turnuvalar</li>
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent); width:16px;"></i> Özel başarım sistemi</li>
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-shield-halved" style="color:var(--accent); width:16px;"></i> Anti-cheat ve adil oyun ortamı</li>
+        <li style="display:flex; gap:0.8rem; align-items:center; color:var(--text2); font-size:0.9rem;"><i class="fa-solid fa-users" style="color:var(--accent); width:16px;"></i> Discord entegrasyonu — sunucu bildirimler</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2.5rem;">
+  <div style="max-width:1300px; margin:0 auto;">
+    <div class="section-header">
+      <span class="section-tag">SKOR TABLOSU</span>
+      <h2>Bu Sezonun <span class="accent">Liderleri</span></h2>
+    </div>
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Oyuncu</th>
+          <th>Hayatta Kalma Günü</th>
+          <th>Öldürdüğü Mob</th>
+          <th>Başarım</th>
+          <th>Durum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rank-num gold">1</span></td>
+          <td><strong>NightShadow_TR</strong></td>
+          <td>87 gün</td>
+          <td>2,341</td>
+          <td>🏆 Ölümsüz</td>
+          <td><span style="color:#39ff14; font-family:var(--font-mono); font-size:0.75rem;">● HAYATTA</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num silver">2</span></td>
+          <td><strong>xBladeRunner</strong></td>
+          <td>64 gün</td>
+          <td>1,879</td>
+          <td>⚔️ Savaşçı</td>
+          <td><span style="color:#39ff14; font-family:var(--font-mono); font-size:0.75rem;">● HAYATTA</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num bronze">3</span></td>
+          <td><strong>CreeperHater99</strong></td>
+          <td>51 gün</td>
+          <td>1,203</td>
+          <td>💎 Zanaatkar</td>
+          <td><span style="color:#39ff14; font-family:var(--font-mono); font-size:0.75rem;">● HAYATTA</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">4</span></td>
+          <td>VoidWalker</td>
+          <td>43 gün</td>
+          <td>988</td>
+          <td>🌿 Kaşif</td>
+          <td><span style="color:#39ff14; font-family:var(--font-mono); font-size:0.75rem;">● HAYATTA</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">5</span></td>
+          <td>MineQueen</td>
+          <td>38 gün</td>
+          <td>754</td>
+          <td>🔥 Ateş Ustası</td>
+          <td><span style="color:#e74c3c; font-family:var(--font-mono); font-size:0.75rem;">✕ ÖLDÜ</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">6</span></td>
+          <td>LegendBro42</td>
+          <td>29 gün</td>
+          <td>612</td>
+          <td>🗡️ Kahraman</td>
+          <td><span style="color:#e74c3c; font-family:var(--font-mono); font-size:0.75rem;">✕ ÖLDÜ</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text3); margin-top:1rem; text-align:right;">Son güncelleme: Discord'da anlık güncelleme için <a href="https://discord.com/invite/f5wYekYN5y" style="color:var(--accent);" target="_blank">katıl →</a></p>
+  </div>
+</section>
+
+<!-- RANKS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">RÜTBELER</span>
+    <h2>Sunucu <span class="accent">Rütbeleri</span></h2>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem;">
+    <div class="rank-card" style="border-top:3px solid #aaa;">
+      <div class="rank-tier" style="color:#aaa;">🪨 TAŞÇI</div>
+      <div class="rank-price">Ücretsiz</div>
+      <ul class="rank-perks">
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Temel erişim</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Sunucuya bağlanma</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Liderlik tablosu</li>
+      </ul>
+    </div>
+    <div class="rank-card" style="border-top:3px solid #5b8c2a;">
+      <div class="rank-tier" style="color:#7dc733;">🌿 ORMANCI</div>
+      <div class="rank-price">Discord'a katılarak</div>
+      <ul class="rank-perks">
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Özel başlangıç kiti</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Özel nick rengi</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Etkinliklere öncelikli katılım</li>
+      </ul>
+    </div>
+    <div class="rank-card" style="border-top:3px solid var(--accent);">
+      <div class="rank-tier" style="color:var(--accent);">🔥 ÇELİK</div>
+      <div class="rank-price">Abone/Takipçi</div>
+      <ul class="rank-perks">
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Özel spawn noktası</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Ekstra envanter satırı</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> VIP kanallarına erişim</li>
+      </ul>
+    </div>
+    <div class="rank-card" style="border-top:3px solid #ffd700; background:rgba(255,215,0,0.04);">
+      <div class="rank-tier" style="color:#ffd700;">👑 ELMAS</div>
+      <div class="rank-price">Özel — sınırlı</div>
+      <ul class="rank-perks">
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Tüm avantajlar</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Yayın içi görünürlük</li>
+        <li><i class="fa-solid fa-check" style="color:#39ff14;"></i> Owlisba ile birlikte oyna</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section style="background:var(--bg2); border-top:1px solid var(--border); padding:5rem 2.5rem;">
+  <div style="max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem;">
+    <div>
+      <div class="section-header">
+        <span class="section-tag">KURALLAR</span>
+        <h2>Sunucu <span class="accent">Kuralları</span></h2>
+      </div>
+      <div class="rules-list">
+        <div class="rule-item"><span class="rule-num">01</span><div class="rule-text"><strong>Hile Yok</strong><p>Hack, mod veya hile kullanan oyuncular kalıcı olarak banlanır.</p></div></div>
+        <div class="rule-item"><span class="rule-num">02</span><div class="rule-text"><strong>Saygı Zorunlu</strong><p>Diğer oyuncuları rahatsız edecek davranışlar yasaklıdır.</p></div></div>
+        <div class="rule-item"><span class="rule-num">03</span><div class="rule-text"><strong>Griefing Yok</strong><p>Başkasının yapısını ve itemlarını izinsiz tahrip etmek yasaktır.</p></div></div>
+        <div class="rule-item"><span class="rule-num">04</span><div class="rule-text"><strong>Hardcore Kuralları</strong><p>Sunucu kuralları belirli bir mekanizmayla uygulanır. Hile ile ölümden kaçma yasak.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-header">
+        <span class="section-tag">SIKÇA SORULANLAR</span>
+        <h2>Sunucu <span class="accent">SSS</span></h2>
+      </div>
+      <div>
+        <div class="faq-item">
+          <div class="faq-q">Sunucuya nasıl katılırım? <i class="fa-solid fa-plus"></i></div>
+          <div class="faq-a">Minecraft Java Edition'ı açın, Çok Oyunculu seçeneğine gidin, sunucu ekle ve IP olarak <strong>play.owlisba.net</strong> girin.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Hangi Minecraft versiyonu gerekiyor? <i class="fa-solid fa-plus"></i></div>
+          <div class="faq-a">Sunucu 1.21.x versiyonunu desteklemektedir. En güncel Java Edition sürümünü kullanmanızı öneririz.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Öldüğümde ne olur? <i class="fa-solid fa-plus"></i></div>
+          <div class="faq-a">Bu hardcore sunucu — öldüğünde hesabın sıfırlanır. Liderlik tablosundaki günün silinir. Yeniden başlayabilirsin.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Discord zorunlu mu? <i class="fa-solid fa-plus"></i></div>
+          <div class="faq-a">Zorunlu değil ama Discord'da anlık duyurular, etkinlik bilgileri ve destek kanalları bulunuyor.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand"><span class="logo-owl">🦉</span> <span class="logo-text">OWLISBA</span><p>FiveM · CS2 · Minecraft · Komedi · Kaos</p></div>
+    <div class="footer-links">
+      <div class="footer-col"><h4>Sayfalar</h4><a href="index.html">Ana Sayfa</a><a href="videos.html">Videolar</a><a href="games.html">Oyunlar</a><a href="server.html">Sunucu</a><a href="about.html">Hakkımda</a></div>
+      <div class="footer-col"><h4>Sosyal Medya</h4><a href="https://kick.com/owlisba" target="_blank">Kick</a><a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank">YouTube</a><a href="https://discord.com/invite/f5wYekYN5y" target="_blank">Discord</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 Owlisba. Tüm hakları saklıdır.</p><p>Sevgiyle yapıldı 🦉 + ☕</p></div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
