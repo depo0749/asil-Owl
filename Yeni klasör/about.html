@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakkımda — OWLISBA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.6rem; top: 0.4rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: 0.72rem; letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem; letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-item p { font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+
+    .setup-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .setup-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+    .setup-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .setup-item .setup-cat {
+      font-family: var(--font-mono);
+      font-size: 0.65rem; letter-spacing: 2px;
+      color: var(--text3); text-transform: uppercase;
+      margin-bottom: 0.4rem; display: block;
+    }
+    .setup-item .setup-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem; letter-spacing: 1px;
+      color: var(--accent);
+    }
+    .setup-item .setup-desc { font-size: 0.8rem; color: var(--text2); margin-top: 0.3rem; }
+
+    .fun-fact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .fun-fact {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .fun-fact-icon { font-size: 2rem; flex-shrink: 0; }
+    .fun-fact-text strong { display: block; margin-bottom: 0.3rem; }
+    .fun-fact-text p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .setup-grid { grid-template-columns: 1fr 1fr; }
+      .fun-fact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .setup-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><span class="logo-owl">🦉</span><span class="logo-text"><a href="index.html">OWLISBA</a></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="videos.html">Videolar</a></li>
+    <li><a href="games.html">Oyunlar</a></li>
+    <li><a href="server.html">Sunucu</a></li>
+    <li><a href="about.html" class="active">Hakkımda</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://kick.com/owlisba" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://discord.com/invite/f5wYekYN5y" target="_blank"><i class="fa-brands fa-discord"></i></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="videos.html">Videolar</a>
+  <a href="games.html">Oyunlar</a>
+  <a href="server.html">Sunucu</a>
+  <a href="about.html">Hakkımda</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <span class="section-tag">OWLISBA KİMDİR?</span>
+    <h1>Bir <span class="accent">Baykuş</span>'un Hikayesi</h1>
+    <p>Oyunlar, kameralar ve sonsuz komik anlar.</p>
+  </div>
+</div>
+
+<!-- ABOUT MAIN -->
+<section class="section">
+  <div class="about-grid">
+    <div>
+      <div class="about-avatar">
+        🦉
+      </div>
+      <!-- STATS BELOW AVATAR -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.2rem; text-align:center;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; color:var(--accent);">3+</div>
+          <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text3); text-transform:uppercase;">Yıl Aktif</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.2rem; text-align:center;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; color:var(--accent);">200+</div>
+          <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text3); text-transform:uppercase;">Video</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.2rem; text-align:center;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; color:var(--accent);">5M+</div>
+          <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text3); text-transform:uppercase;">Toplam İzlenme</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.2rem; text-align:center;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; color:var(--accent);">4</div>
+          <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text3); text-transform:uppercase;">Platform</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">HAKKIMDA</span>
+      <h2>Merhaba, ben <span class="accent">Owlisba</span></h2>
+      <p>Oyunlarda yaşadığım komik, epik ve bazen inanılmaz derecede aptalca anları sizlerle paylaşıyorum. FiveM'de sıfır IQ planlar kuruyorum, CS2'de imkansız clutchlar deniyorum, Minecraft'ta ise hardcore modda ölümsüz olmaya çalışıyorum — ve genellikle başarısız oluyorum, ama o başarısızlıklar da en iyi videolar oluyor.</p>
+      <p>Kısa ve uzun format videolar yapıyorum. TikTok'ta anlık komedi, YouTube'da tam hikayeler, Kick'te ise canlı yayınlarda beraber yaşıyoruz her şeyi.</p>
+      <p>İçerik üretmek benim için sadece bir iş değil — her gün oturup oyun oynarken kameraya bakıp "bunu izleyecekler mi?" diye düşünürüm ve neredeyse her seferinde cevap evet oluyor. Topluluğunuz olmasa bu hikayelerin hiçbiri olmayacaktı.</p>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
+        <a href="https://kick.com/owlisba" target="_blank" class="btn btn-primary"><i class="fa-solid fa-circle-play"></i> Canlı İzle</a>
+        <a href="https://discord.com/invite/f5wYekYN5y" target="_blank" class="btn btn-discord"><i class="fa-brands fa-discord"></i> Topluluğa Katıl</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background:var(--bg2); border-top:1px solid var(--border); padding:5rem 2.5rem;">
+  <div style="max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem;">
+    <div>
+      <div class="section-header">
+        <span class="section-tag">YOLCULUK</span>
+        <h2>İçerik <span class="accent">Tarihi</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <h4>İlk Video</h4>
+          <p>YouTube'da ilk videom yayınlandı. Kalite berbattı ama enerji vardı. 12 kişi izledi, 10'u ben ve ailemdi.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <h4>FiveM Başladı</h4>
+          <p>FiveM içerikleri viral olmaya başladı. TikTok'a geçiş yaptım ve kısa videolar patladı.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <h4>Kick'e Geçiş</h4>
+          <p>Kick'te canlı yayınlara başladım. İlk büyük yayında 500 eş zamanlı izleyici rekorunu kırdım.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <h4>Hardcore Sunucu</h4>
+          <p>Kendi Minecraft sunucumu kurdum. İlk haftada 400+ kayıt, ilk ayda 100+ ölüm gerçekleşti.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024+</div>
+          <h4>Büyümeye Devam</h4>
+          <p>Her gün yeni içerik, yeni maceralar. Topluluğumuzu büyütmeye devam ediyoruz.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-header">
+        <span class="section-tag">EĞLENCELİ GERÇEKLER</span>
+        <h2>Beni <span class="accent">Tanı</span></h2>
+      </div>
+      <div class="fun-fact-grid">
+        <div class="fun-fact">
+          <span class="fun-fact-icon">☕</span>
+          <div class="fun-fact-text"><strong>Kahve Bağımlısı</strong><p>Ortalama bir yayın gününde 4-5 fincan kahve içiyorum. Kahvesiz yayın = felaket.</p></div>
+        </div>
+        <div class="fun-fact">
+          <span class="fun-fact-icon">🎯</span>
+          <div class="fun-fact-text"><strong>CS2 Obsesyonu</strong><p>CS2'de ace almayı o kadar istiyorum ki bazen sadece bunun için saatlerce antrenman yapıyorum.</p></div>
+        </div>
+        <div class="fun-fact">
+          <span class="fun-fact-icon">💀</span>
+          <div class="fun-fact-text"><strong>Hardcore Rekorum</strong><p>Kendi sunucumda en uzun hayatta kalma sürem 23 gün. Bir creeper patlattı.</p></div>
+        </div>
+        <div class="fun-fact">
+          <span class="fun-fact-icon">🌙</span>
+          <div class="fun-fact-text"><strong>Gece Kuşu</strong><p>Baykuş olmak tesadüf değil — en iyi içeriklerim gece 02:00 - 04:00 arası çıkıyor.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">EKİPMAN</span>
+    <h2>Yayın <span class="accent">Kurulumu</span></h2>
+  </div>
+  <div class="setup-grid">
+    <div class="setup-item"><span class="setup-cat">İşlemci</span><div class="setup-name">Intel i9-13900K</div><div class="setup-desc">Aynı anda 5 oyun açık olsa bile sorunsuz çalışır.</div></div>
+    <div class="setup-item"><span class="setup-cat">Ekran Kartı</span><div class="setup-name">RTX 4080</div><div class="setup-desc">Her şeyin en yüksek kalitede akmasını sağlıyor.</div></div>
+    <div class="setup-item"><span class="setup-cat">RAM</span><div class="setup-name">64GB DDR5</div><div class="setup-desc">Chrome sekmelerini kapatmak için artık savaşmak gerekmez.</div></div>
+    <div class="setup-item"><span class="setup-cat">Mikrofon</span><div class="setup-name">Shure SM7B</div><div class="setup-desc">Podcast kalitesinde ses — kahve içerken de net duyuluyorum.</div></div>
+    <div class="setup-item"><span class="setup-cat">Kamera</span><div class="setup-name">Sony ZV-E10</div><div class="setup-desc">Yüz kamerası için kullanıyorum, şimdilik.</div></div>
+    <div class="setup-item"><span class="setup-cat">Yazılım</span><div class="setup-name">OBS + DaVinci</div><div class="setup-desc">Yayın için OBS, video edit için DaVinci Resolve.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--surface); border-top:1px solid var(--border); padding:5rem 2.5rem; text-align:center;">
+  <div style="max-width:600px; margin:0 auto;">
+    <span class="section-tag" style="text-align:center; display:block;">İLETİŞİM</span>
+    <h2 style="font-family:var(--font-display); font-size:3rem; letter-spacing:2px; margin-bottom:1rem;">İş <span class="accent">Birliği</span></h2>
+    <p style="color:var(--text2); margin-bottom:2.5rem; line-height:1.8;">Sponsorluk, iş birliği veya diğer teklifler için aşağıdaki kanallar üzerinden ulaşabilirsiniz. En hızlı yanıt Discord üzerinden gelir.</p>
+    <div style="display:flex; flex-direction:column; gap:0.8rem; max-width:400px; margin:0 auto;">
+      <a href="https://discord.com/invite/f5wYekYN5y" target="_blank" class="btn btn-discord" style="justify-content:center;"><i class="fa-brands fa-discord"></i> Discord Sunucusu</a>
+      <a href="https://instagram.com/owlisba" target="_blank" class="btn btn-secondary" style="justify-content:center;"><i class="fa-brands fa-instagram"></i> Instagram DM</a>
+    </div>
+    <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text3); margin-top:2rem; letter-spacing:1px;">business@owlisba.net</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand"><span class="logo-owl">🦉</span> <span class="logo-text">OWLISBA</span><p>FiveM · CS2 · Minecraft · Komedi · Kaos</p></div>
+    <div class="footer-links">
+      <div class="footer-col"><h4>Sayfalar</h4><a href="index.html">Ana Sayfa</a><a href="videos.html">Videolar</a><a href="games.html">Oyunlar</a><a href="server.html">Sunucu</a><a href="about.html">Hakkımda</a></div>
+      <div class="footer-col"><h4>Sosyal Medya</h4><a href="https://kick.com/owlisba" target="_blank">Kick</a><a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank">YouTube</a><a href="https://tiktok.com/@owlisba" target="_blank">TikTok</a><a href="https://instagram.com/owlisba" target="_blank">Instagram</a><a href="https://discord.com/invite/f5wYekYN5y" target="_blank">Discord</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 Owlisba. Tüm hakları saklıdır.</p><p>Sevgiyle yapıldı 🦉 + ☕</p></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
