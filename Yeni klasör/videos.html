@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videolar — OWLISBA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span class="logo-owl">🦉</span>
+    <span class="logo-text"><a href="index.html">OWLISBA</a></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="videos.html" class="active">Videolar</a></li>
+    <li><a href="games.html">Oyunlar</a></li>
+    <li><a href="server.html">Sunucu</a></li>
+    <li><a href="about.html">Hakkımda</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://kick.com/owlisba" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://tiktok.com/@owlisba" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="https://instagram.com/owlisba" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://discord.com/invite/f5wYekYN5y" target="_blank"><i class="fa-brands fa-discord"></i></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="videos.html">Videolar</a>
+  <a href="games.html">Oyunlar</a>
+  <a href="server.html">Sunucu</a>
+  <a href="about.html">Hakkımda</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <span class="section-tag">İÇERİKLER</span>
+    <h1>Tüm <span class="accent">Videolar</span></h1>
+    <p>Komik, epik, absürd — hepsi burada. Platform seç, oyun filtrele, izle.</p>
+  </div>
+</div>
+
+<!-- PLATFORM TABS -->
+<section class="section">
+  <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-bottom:2rem;">
+    <div class="filter-tabs" id="platformTabs">
+      <button class="filter-tab active" data-platform="all"><i class="fa-solid fa-layer-group"></i> Tümü</button>
+      <button class="filter-tab" data-platform="youtube"><i class="fa-brands fa-youtube"></i> YouTube</button>
+      <button class="filter-tab" data-platform="kick"><i class="fa-solid fa-circle-play"></i> Kick Klipleri</button>
+      <button class="filter-tab" data-platform="tiktok"><i class="fa-brands fa-tiktok"></i> TikTok Shorts</button>
+    </div>
+    <div class="filter-tabs" id="gameTabs" style="margin-left:auto;">
+      <button class="filter-tab active" data-filter="all">Tüm Oyunlar</button>
+      <button class="filter-tab" data-filter="minecraft">⛏️ Minecraft</button>
+      <button class="filter-tab" data-filter="fivem">🚔 FiveM</button>
+      <button class="filter-tab" data-filter="cs2">🎯 CS2</button>
+      <button class="filter-tab" data-filter="other">🎮 Diğer</button>
+    </div>
+  </div>
+
+  <!-- VIDEO SORT/INFO -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+    <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text3); letter-spacing:1px;">126 İÇERİK BULUNDU</span>
+    <select style="background:var(--surface); border:1px solid var(--border); color:var(--text2); padding:0.5rem 1rem; border-radius:var(--radius); font-family:var(--font-mono); font-size:0.75rem; cursor:pointer;">
+      <option>En Yeni</option>
+      <option>En Çok İzlenen</option>
+      <option>En Uzun</option>
+      <option>En Kısa</option>
+    </select>
+  </div>
+
+  <!-- FEATURED ROW -->
+  <div style="margin-bottom:3rem;">
+    <h3 style="font-family:var(--font-display); font-size:1.5rem; letter-spacing:2px; color:var(--text2); margin-bottom:1.5rem;">📌 ÖNE ÇIKANLAR</h3>
+    <div class="video-grid">
+      <div class="video-card featured-card" data-game="minecraft">
+        <div class="video-thumb">
+          <div class="thumb-placeholder minecraft-thumb">
+            <span class="game-icon">⛏️</span>
+            <span class="thumb-label">MINECRAFT</span>
+          </div>
+          <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">18:42</span></div>
+          <span class="video-badge new">YENİ</span>
+        </div>
+        <div class="video-info">
+          <span class="video-game-tag minecraft-tag">Minecraft</span>
+          <h3>Hardcore Sunucuda 100. Gün — Kimse Hayatta Değil</h3>
+          <p>48 saatlik epik bir survival serüveninin en komik ve dramatik anları bir arada.</p>
+          <div class="video-meta">
+            <span><i class="fa-regular fa-eye"></i> 124K</span>
+            <span><i class="fa-regular fa-clock"></i> 2 gün önce</span>
+            <span><i class="fa-brands fa-youtube"></i> YouTube</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card" data-game="cs2">
+        <div class="video-thumb">
+          <div class="thumb-placeholder cs2-thumb"><span class="game-icon">🎯</span><span class="thumb-label">CS2</span></div>
+          <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">12:03</span></div>
+        </div>
+        <div class="video-info">
+          <span class="video-game-tag cs2-tag">CS2</span>
+          <h3>Kör Olarak 1v5 Ace Aldım — Gerçek</h3>
+          <div class="video-meta"><span><i class="fa-regular fa-eye"></i> 201K</span><span><i class="fa-brands fa-youtube"></i> YouTube</span></div>
+        </div>
+      </div>
+      <div class="video-card" data-game="fivem">
+        <div class="video-thumb">
+          <div class="thumb-placeholder fivem-thumb"><span class="game-icon">🚔</span><span class="thumb-label">FiveM</span></div>
+          <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">24:51</span></div>
+        </div>
+        <div class="video-info">
+          <span class="video-game-tag fivem-tag">FiveM</span>
+          <h3>Bankayı 7 Kişiyle Soydum, 6'sı Beni Vurdu</h3>
+          <div class="video-meta"><span><i class="fa-regular fa-eye"></i> 155K</span><span><i class="fa-brands fa-youtube"></i> YouTube</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALL VIDEOS GRID -->
+  <h3 style="font-family:var(--font-display); font-size:1.5rem; letter-spacing:2px; color:var(--text2); margin-bottom:1.5rem;">🎬 TÜM VİDEOLAR</h3>
+  <div class="full-video-grid">
+
+    <!-- Minecraft -->
+    <div class="video-card" data-game="minecraft">
+      <div class="video-thumb"><div class="thumb-placeholder minecraft-thumb"><span class="game-icon">⛏️</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">31:17</span></div></div>
+      <div class="video-info"><span class="video-game-tag minecraft-tag">Minecraft</span><h3>Nether Portalı Yanlış Yerde Açıldı</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 67K</span><span><i class="fa-regular fa-clock"></i> 1 hafta</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="fivem">
+      <div class="video-thumb"><div class="thumb-placeholder fivem-thumb"><span class="game-icon">🚗</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">6:17</span></div><span class="video-badge hot">TREND</span></div>
+      <div class="video-info"><span class="video-game-tag fivem-tag">FiveM</span><h3>Polis Beni Tanıdı — Sosyal Deney #1</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 89K</span><span><i class="fa-brands fa-tiktok"></i> TikTok</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="cs2">
+      <div class="video-thumb"><div class="thumb-placeholder cs2-thumb"><span class="game-icon">💣</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">0:58</span></div></div>
+      <div class="video-info"><span class="video-game-tag cs2-tag">CS2</span><h3>Milisaniye Farkıyla Defuse — Kalp Durdu</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 412K</span><span><i class="fa-brands fa-tiktok"></i> Short</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="minecraft">
+      <div class="video-thumb"><div class="thumb-placeholder minecraft-thumb"><span class="game-icon">🐉</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">22:09</span></div></div>
+      <div class="video-info"><span class="video-game-tag minecraft-tag">Minecraft</span><h3>Ender Dragon'u Hazırlıksız Yendim</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 88K</span><span><i class="fa-regular fa-clock"></i> 3 hafta</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="fivem">
+      <div class="video-thumb"><div class="thumb-placeholder fivem-thumb"><span class="game-icon">🏦</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">19:34</span></div></div>
+      <div class="video-info"><span class="video-game-tag fivem-tag">FiveM</span><h3>Yeni Karakter Açtım: Avukat Olduk</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 73K</span><span><i class="fa-brands fa-youtube"></i> YouTube</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="other">
+      <div class="video-thumb"><div class="thumb-placeholder" style="background:linear-gradient(135deg,#0d0d2b,#1a1a4d);"><span class="game-icon">🚀</span><span class="thumb-label">RANDOM</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">14:22</span></div></div>
+      <div class="video-info"><span class="video-game-tag" style="background:rgba(155,89,255,0.2);color:#9b59ff;border:1px solid rgba(155,89,255,0.4);">Diğer</span><h3>Yeni Oyun Denedim: 10 Dakika Bağırdım</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 44K</span><span><i class="fa-brands fa-youtube"></i> YouTube</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="cs2">
+      <div class="video-thumb"><div class="thumb-placeholder cs2-thumb"><span class="game-icon">🔫</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">8:55</span></div></div>
+      <div class="video-info"><span class="video-game-tag cs2-tag">CS2</span><h3>Global'e Yükselirken Yaşananlar</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 99K</span><span><i class="fa-brands fa-youtube"></i> YouTube</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="minecraft">
+      <div class="video-thumb"><div class="thumb-placeholder minecraft-thumb"><span class="game-icon">🏰</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">45:01</span></div></div>
+      <div class="video-info"><span class="video-game-tag minecraft-tag">Minecraft</span><h3>Toplulukla Birlikte Dev Kale İnşası</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 131K</span><span><i class="fa-solid fa-circle-play"></i> Kick VOD</span></div></div>
+    </div>
+
+    <div class="video-card" data-game="fivem">
+      <div class="video-thumb"><div class="thumb-placeholder fivem-thumb"><span class="game-icon">🚁</span></div>
+      <div class="video-overlay"><button class="play-btn"><i class="fa-solid fa-play"></i></button><span class="video-duration">3:12</span></div></div>
+      <div class="video-info"><span class="video-game-tag fivem-tag">FiveM</span><h3>Helikopterle Markete Girdim</h3><div class="video-meta"><span><i class="fa-regular fa-eye"></i> 188K</span><span><i class="fa-brands fa-tiktok"></i> TikTok</span></div></div>
+    </div>
+
+  </div>
+
+  <!-- LOAD MORE -->
+  <div style="text-align:center; margin-top:3rem;">
+    <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank" class="btn btn-outline">YouTube'da Daha Fazla Gör <i class="fa-brands fa-youtube"></i></a>
+  </div>
+</section>
+
+<!-- SUBSCRIBE CTA -->
+<section style="background:var(--surface); border-top:1px solid var(--border); padding:5rem 2.5rem; text-align:center;">
+  <div style="max-width:600px; margin:0 auto;">
+    <span class="section-tag" style="text-align:center; display:block;">BİLDİRİM</span>
+    <h2 style="font-family:var(--font-display); font-size:3rem; letter-spacing:2px; margin-bottom:1rem;">Yeni video gelince <span class="accent">haberdar ol</span></h2>
+    <p style="color:var(--text2); margin-bottom:2rem;">YouTube'a abone ol, Kick'i takip et veya Discord'a katıl — hiçbir içeriği kaçırma.</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank" class="btn btn-primary"><i class="fa-brands fa-youtube"></i> Abone Ol</a>
+      <a href="https://discord.com/invite/f5wYekYN5y" target="_blank" class="btn btn-discord"><i class="fa-brands fa-discord"></i> Discord'a Katıl</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-owl">🦉</span> <span class="logo-text">OWLISBA</span>
+      <p>FiveM · CS2 · Minecraft · Komedi · Kaos</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Sayfalar</h4>
+        <a href="index.html">Ana Sayfa</a>
+        <a href="videos.html">Videolar</a>
+        <a href="games.html">Oyunlar</a>
+        <a href="server.html">Sunucu</a>
+        <a href="about.html">Hakkımda</a>
+      </div>
+      <div class="footer-col">
+        <h4>Platformlar</h4>
+        <a href="https://kick.com/owlisba" target="_blank">Kick</a>
+        <a href="https://www.youtube.com/channel/UC18YkoN4p_8Siqgl8_2wBgA" target="_blank">YouTube</a>
+        <a href="https://tiktok.com/@owlisba" target="_blank">TikTok</a>
+        <a href="https://instagram.com/owlisba" target="_blank">Instagram</a>
+        <a href="https://discord.com/invite/f5wYekYN5y" target="_blank">Discord</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Owlisba. Tüm hakları saklıdır.</p>
+    <p>Sevgiyle yapıldı 🦉 + ☕</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
